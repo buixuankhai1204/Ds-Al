@@ -2,10 +2,13 @@
 
 using Ds_Al.LinkedList;
 
-Node newnode = new Node(5);
-newnode.InsertEndNode(newnode,7);
-newnode.InsertEndNode(newnode,1);
-newnode.InsertEndNode(newnode,4);
-newnode.InsertKthNode(newnode,9,2);
+LinkedList list = new LinkedList();
+list.InsertEndNode(7);
+list.InsertEndNode(1);
+list.InsertEndNode(4);
+list.InsertKthNode(9,2);
+list.InsertHeadNode(6);
+list.DeleteHeadNode();
+list.PrintNodeValue();
 
-newnode.PrintNodeValue(newnode);
+

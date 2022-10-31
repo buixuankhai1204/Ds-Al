@@ -3,60 +3,91 @@
 public class Node
 {
     public int data;
-    public Node next = null;
+    public Node next;
+}
 
-    public Node(int data)
+public class LinkedList
+{
+    private Node node;
+
+    public LinkedList()
     {
-        this.data = data;
-        this.next = null;
+        node = null;
     }
-
-    public void InsertHeadNode(Node node, int data)
+    
+    public void InsertHeadNode( int data)
     {
-        Node newNode = new Node(data);
+        Node newNode = new Node();
+        newNode.data = data;
         newNode.next = node;
         node = newNode;
     }
-    
-    public void InsertEndNode(Node node, int data)
+
+    public void InsertEndNode(int data)
     {
-        while (node.next != null)
+        Node newNode = new Node();
+        newNode.data = data;
+        newNode.next = null;
+        if (node == null)
         {
-            node = node.next;
+            node = newNode;
         }
-        Node newNode = new Node(data);
-        node.next = newNode;
+        else
+        {
+            Node temp = new Node();
+            temp = node;
+            while(temp.next != null)
+                temp = temp.next;
+            temp.next = newNode;
+        }
     }
 
-    public void InsertKthNode(Node node, int data, int k)
+    public void InsertKthNode( int data, int k)
     {
-        Node newNode = new Node(data);
+        Node newNode = new Node();
+        newNode.data = data;
+        newNode.next = null;
+        
         int count = 0;
-        while (node != null)
+        Node temp = node;
+        while (temp != null)
         {
             count++;
             if (count == k)
             {
-                Console.WriteLine("helasd");
-                newNode.next = node.next;
-                node.next = newNode;
+                newNode.next = temp.next;
+                temp.next = newNode;
             }
 
-            node = node.next;
+            temp = temp.next;
         }
     }
-    
 
-    public void PrintNodeValue(Node node)
+    public void DeleteHeadNode()
+    {
+        if (node != null)
+        {
+            Node dummyNode = node;
+            node = node.next;
+            dummyNode = null;
+        }
+    }
+
+    public void DeleteKthNode()
+    {
+        
+    }
+
+    public void PrintNodeValue()
     {
         int count = 0;
         while (node != null)
         {
             count++;
-            Console.WriteLine( + node.data);
+            Console.WriteLine(node.data);
             node = node.next;
         }
+        
         Console.WriteLine("Length: " + count);
-
     }
 }
