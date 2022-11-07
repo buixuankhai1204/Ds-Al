@@ -9,6 +9,7 @@ public class Node
 public class LinkedList
 {
     private Node node;
+    private int length;
 
     public LinkedList()
     {
@@ -73,21 +74,57 @@ public class LinkedList
         }
     }
 
-    public void DeleteKthNode()
+    public void DeleteKthNode(int kth)
     {
-        
+        int count = 0;
+        Node temp = node;
+        while (temp != null)
+        {
+            count++;
+            if (kth == count)
+            {
+                temp.next = temp.next.next;
+            }
+            temp = temp.next;
+        }
+    }
+
+    public void DeleteEndNode()
+    {
+        Node temp = node;
+        while (temp.next.next != null)
+        {
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
     }
 
     public void PrintNodeValue()
     {
         int count = 0;
-        while (node != null)
+        Node tmp = node;
+        while (tmp != null)
         {
             count++;
-            Console.WriteLine(node.data);
-            node = node.next;
+            Console.WriteLine(tmp.data);
+            tmp = tmp.next;
         }
-        
+
+        length = count;
         Console.WriteLine("Length: " + count);
+    }
+
+    public int Problem2(int N)
+    {
+        int indexFind = length - N;
+        // Console.WriteLine(indexFind);
+        Node temp = node;
+        int count = 0;
+        while (count < indexFind)
+        {
+            temp = temp.next;
+            count++;
+        }
+        return node.data;
     }
 }
